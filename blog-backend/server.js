@@ -7,6 +7,7 @@ const authRoute = require("./routes/Auth");
 const usersRoute = require("./routes/Users");
 const postsRoute = require("./routes/Posts");
 const categoryRoute = require("./routes/Categories");
+const path = require("path");
 
 const app = express();
 dotenv.config();
@@ -17,6 +18,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+app.use("/images", express.static(path.join(__dirname, "/images")));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
